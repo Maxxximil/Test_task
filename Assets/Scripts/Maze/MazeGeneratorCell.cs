@@ -1,5 +1,6 @@
 ﻿namespace Scripts.Maze
 {
+    //Генератор одной ячейки лабиринта
     public class MazeGeneratorCell
     {
         public int X;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Скрипт для пересоздания пути в НавМэше 
 public class NavigationBacker : MonoBehaviour
 {
 

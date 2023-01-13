@@ -9,7 +9,7 @@ namespace Scripts.Maze
         public int Width = 15;
         public int Height = 15;
 
-
+        //√енераци€ всех €чеек лабиринта
         public MazeGeneratorCell[,] GenerateMaze()
         {
             MazeGeneratorCell[,] maze = new MazeGeneratorCell[Width, Height];
@@ -40,7 +40,7 @@ namespace Scripts.Maze
             return maze;
         }
 
-
+        //ѕосле генерации всех €чеек убираем стены по алгоритму
         private void RemoveWallsWithBacktrecker(MazeGeneratorCell[,] maze)
         {
             MazeGeneratorCell current = maze[0, 0];
@@ -75,7 +75,7 @@ namespace Scripts.Maze
                 }
             } while (stack.Count > 0);
         }
-
+        //—крипт убирани€ стены
         private void RemoveWall(MazeGeneratorCell a, MazeGeneratorCell b)
         {
             if(a.X == b.X)
