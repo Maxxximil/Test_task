@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5134356996012240188}
   - component: {fileID: 247237020419467020}
   - component: {fileID: 7294594922099690666}
+  - component: {fileID: -1259119149618061799}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5134356996012240163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 892bd28a46cea1c4ca850072bb6f7511, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57acebd1f697b7d4ead413dc351ed528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeShield: {fileID: 2100000, guid: bca940fd000f13245a0b6ed0a206dd9a, type: 2}
+  nonActiveShield: {fileID: 2100000, guid: 892bd28a46cea1c4ca850072bb6f7511, type: 2}
+  Explosion: {fileID: 6890442635145394465, guid: 43c74b70423dea647828c11d0a840742, type: 3}
   Agent: {fileID: 7294594922099690666}
+  IsShieldActive: 0
 --- !u!195 &7294594922099690666
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -119,16 +124,32 @@ NavMeshAgent:
   m_GameObject: {fileID: 5134356996012240163}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 6
-  m_Acceleration: 8
+  m_Radius: 0.78
+  m_Speed: 10
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 180
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
+--- !u!54 &-1259119149618061799
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5134356996012240163}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
