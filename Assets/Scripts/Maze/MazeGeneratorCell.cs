@@ -7,6 +7,7 @@
 
         public bool WallLeft = true;
         public bool WallBottom = true;
+        public bool Floor = true;
 
         public bool Visited = false;
     }

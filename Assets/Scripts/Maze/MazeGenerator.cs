@@ -6,7 +6,7 @@ namespace Scripts.Maze
 {
     public class MazeGenerator
     {
-        public int Width = 23;
+        public int Width = 15;
         public int Height = 15;
 
 
@@ -25,11 +25,13 @@ namespace Scripts.Maze
             for (int x = 0; x < maze.GetLength(0); x++)
             {
                 maze[x, Height - 1].WallLeft = false;
+                maze[x, Height - 1].Floor = false;
             }
 
             for (int y = 0; y < maze.GetLength(1); y++)
             {
                 maze[Width - 1, y].WallBottom = false;
+                maze[Width - 1, y].Floor = false;
             }
 
                 RemoveWallsWithBacktrecker(maze);
@@ -78,7 +80,10 @@ namespace Scripts.Maze
         {
             if(a.X == b.X)
             {
-                if (a.Y > b.Y) a.WallBottom = false;
+                if (a.Y > b.Y)
+                {
+                    a.WallBottom = false;
+                }
                 else b.WallBottom = false;
 
             }

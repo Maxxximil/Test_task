@@ -387,13 +387,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.49707, y: -0, z: -0, w: 0.8677105}
-  m_LocalPosition: {x: 0, y: 8, z: -2.7}
+  m_LocalRotation: {x: 0.58778524, y: 0, z: 0, w: 0.809017}
+  m_LocalPosition: {x: 20, y: 41, z: 2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 59.613, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 72, y: 0, z: 0}
 --- !u!1 &971414446
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1056799411
 Transform:
   m_ObjectHideFlags: 0
@@ -645,6 +645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CellPrefab: {fileID: 4152747535247687090, guid: 2e6f15def341ddd40a29d22d9a18499e, type: 3}
+  SpawnPoint: {fileID: 5246245036266878240, guid: 2f2c725b7c3149a44bc56cac5047d69e, type: 3}
+  FinishPoint: {fileID: 4826274728220730089, guid: 6dc1f3d95084770498150379a39deecb, type: 3}
+  DeadPoint: {fileID: 6446776814334517442, guid: 07cb85d19947e9f4385d3211c2a8fcee, type: 3}
   CellSize: {x: 3, y: 0, z: 3}
 --- !u!4 &1159931131
 Transform:
@@ -676,7 +679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1306664753
 Transform:
   m_ObjectHideFlags: 0
@@ -710,16 +713,16 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 55
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.1
+  m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: dabab1b1d23d8be42beffeb42caef7fa, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &1353600203
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462976392}
   - component: {fileID: 1462976391}
+  - component: {fileID: 1462976393}
   m_Layer: 0
   m_Name: GameControlelr
   m_TagString: Untagged
@@ -789,6 +793,8 @@ MonoBehaviour:
   SpawnPoint: {fileID: 1769570040}
   FinishPoint: {fileID: 228297056}
   PlayerPrefab: {fileID: 5134356996012240163, guid: 0cfef7e2fba7ec84c9f5bac8487f7f0a, type: 3}
+  navigationBacker: {fileID: 1462976393}
+  Difficulty: 4
   TimeToRespawn: 2
 --- !u!4 &1462976392
 Transform:
@@ -804,6 +810,21 @@ Transform:
   m_Father: {fileID: 1056799411}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462976393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462976390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b91acbbfcbfb074aa456e198be7dcd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surfaces:
+  - {fileID: 1306664754}
+  objectsToRotate: []
 --- !u!1 &1605213044
 GameObject:
   m_ObjectHideFlags: 0
