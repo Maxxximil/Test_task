@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Scripts.Maze
 {
+    //Ячейка лабиринта
     public class Cell : MonoBehaviour
     {
         public GameObject WallLeft;

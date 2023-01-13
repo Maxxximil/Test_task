@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Scripts.Maze
 {
+    //Спавн сгенерированного лабиринта
     public class MazeSpawner : MonoBehaviour
     {
         public Cell CellPrefab;
@@ -17,14 +18,14 @@ namespace Scripts.Maze
         private void Start()
         {
             MazeGenerator generator = new MazeGenerator();
-            MazeGeneratorCell[,] maze = generator.GenerateMaze();
+            MazeGeneratorCell[,] maze = generator.GenerateMaze();//Вызываем генератор
             GenerateMaze(generator, maze);
 
            
 
                 
         }
-
+        //Создаем
         private void GenerateMaze(MazeGenerator generator, MazeGeneratorCell[,] maze)
         {
             for (int x = 0; x < maze.GetLength(0); x++)
@@ -33,11 +34,12 @@ namespace Scripts.Maze
                 {
                     Cell c = Instantiate(CellPrefab, new Vector3(x * CellSize.x, y * CellSize.y, y * CellSize.z), Quaternion.identity).GetComponent<Cell>();
 
-
+                    //Активируем стены в зависимости от генерации
                     c.WallLeft.SetActive(maze[x, y].WallLeft);
                     c.WallBottom.SetActive(maze[x, y].WallBottom);
                     c.Floor.SetActive(maze[x, y].Floor);
 
+                    //Спавним спавн поинт
                     if (x == 0 && y == 0)
                     {
 
@@ -45,12 +47,14 @@ namespace Scripts.Maze
                         GameController.Instance.SpawnPoint = c.transform;
                     }
 
+                    //Спавним Финиш
                     if (x == generator.Width - 2 && y == generator.Height - 2)
                     {
                         Instantiate(FinishPoint, c.transform);
                         GameController.Instance.FinishPoint = c.transform;
                     }
 
+                    //Спавним зоны смерти
                     if (x != 0 && y != 0 && x != generator.Width - 2 && y != generator.Height - 2)
                     {
                         if (y != generator.Height - 1 && x != generator.Width - 1)

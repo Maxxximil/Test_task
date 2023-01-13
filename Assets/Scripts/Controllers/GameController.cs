@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scripts.Controllers
 {
+
+    //Контроллер игры
     public class GameController : MonoBehaviour
     {
         public static GameController Instance;
@@ -25,32 +28,36 @@ namespace Scripts.Controllers
         }
         private void Start()
         {
-            _currentTime = TimeToRespawn;
+            _currentTime = TimeToRespawn;//Обнуляем время до респавна
         }
 
         private void Update()
         {
-            if (_isRespawned) return;
+            if (_isRespawned) return;//Если зареспавнены выходи из апдейта
             if (_currentTime > 0)
             {
-                _currentTime -= Time.deltaTime;
+                _currentTime -= Time.deltaTime;//Уменбшаем время
             }
             else
             {
+                //Спавним игрока и активируем UI
                 SpawnPlayer();
                 UIController.Instance.Shield.SetActive(true);
+                UIController.Instance.PauseButton.interactable = true;
+                UIController.Instance.StartScreen.SetActive(false);
             }
         }
 
-        public void SpawnPlayer()
+        public void SpawnPlayer()//Спавн игрока
         {
             Vector3 pos = SpawnPoint.position;
             pos.y += 1f;
             GameObject player = Instantiate(PlayerPrefab, pos, Quaternion.identity);
             _isRespawned = true;
-            //Player.player.MoveToLocation(FinishPoint.position);
             navigationBacker.BakeNavMesh();
 
         }
+
+        
     }
 }
