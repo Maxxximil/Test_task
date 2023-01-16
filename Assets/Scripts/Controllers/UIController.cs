@@ -19,7 +19,6 @@ namespace Scripts.Controllers
         public bool IsPressed;
         private float _pressedTime = 2f;
         private float _currentTime;
-        private bool _ispaused = false;
 
         private void Awake()
         {
@@ -92,17 +91,15 @@ namespace Scripts.Controllers
         //Пауза
         public void PauseGame()
         {
-            if (!_ispaused)
+            if (Time.timeScale == 1.5f)
             {
-                _ispaused = true;
-                Player.player.Agent.isStopped = true;
-                
+                Time.timeScale = 0;
 
             }
             else
             {
-                _ispaused = false;  
-                Player.player.Agent.isStopped = false;
+                Time.timeScale = 1.5f;
+
             }
 
         }

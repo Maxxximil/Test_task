@@ -11,5 +11,6 @@
         public bool Floor = true;
 
         public bool Visited = false;
+        public int DistanceFromStart;
     }
 }
