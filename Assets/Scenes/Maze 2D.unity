@@ -644,7 +644,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5785cb0649ae7c3448fae9c1ad1d5857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CellPrefab: {fileID: 1589963989571938844, guid: 52e29aae3f9e0af4abe924dfd7f489d2, type: 3}
+  CellPrefab: {fileID: 4452928717753052293, guid: 52e29aae3f9e0af4abe924dfd7f489d2, type: 3}
+  SpawnPoint: {fileID: 5246245036266878240, guid: 2f2c725b7c3149a44bc56cac5047d69e, type: 3}
+  FinishPoint: {fileID: 4826274728220730089, guid: 6dc1f3d95084770498150379a39deecb, type: 3}
+  DeadPoint: {fileID: 6446776814334517442, guid: 07cb85d19947e9f4385d3211c2a8fcee, type: 3}
+  CellSize: {x: 1, y: 1, z: 0}
 --- !u!4 &1159931131
 Transform:
   m_ObjectHideFlags: 0
@@ -716,7 +720,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.1
+  m_VoxelSize: 0.8333333
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: dabab1b1d23d8be42beffeb42caef7fa, type: 2}
 --- !u!1 &1353600203
@@ -788,6 +792,8 @@ MonoBehaviour:
   SpawnPoint: {fileID: 1769570040}
   FinishPoint: {fileID: 228297056}
   PlayerPrefab: {fileID: 5134356996012240163, guid: 0cfef7e2fba7ec84c9f5bac8487f7f0a, type: 3}
+  navigationBacker: {fileID: 0}
+  Difficulty: 4
   TimeToRespawn: 2
 --- !u!4 &1462976392
 Transform:

@@ -15,29 +15,31 @@ namespace Scripts.Maze
 
         public Vector3 CellSize = new Vector3(1, 1, 0);
 
+        public Maze maze;
+        public PathRenderer PathRenderer;
+
         private void Start()
         {
             MazeGenerator generator = new MazeGenerator();
-            MazeGeneratorCell[,] maze = generator.GenerateMaze();//Вызываем генератор
+            maze = generator.GenerateMaze();//Вызываем генератор
             GenerateMaze(generator, maze);
 
-           
-
+            PathRenderer.DrawPath();
                 
         }
         //Создаем
-        private void GenerateMaze(MazeGenerator generator, MazeGeneratorCell[,] maze)
+        private void GenerateMaze(MazeGenerator generator, Maze maze)
         {
-            for (int x = 0; x < maze.GetLength(0); x++)
+            for (int x = 0; x < maze.cells.GetLength(0); x++)
             {
-                for (int y = 0; y < maze.GetLength(1); y++)
+                for (int y = 0; y < maze.cells.GetLength(1); y++)
                 {
                     Cell c = Instantiate(CellPrefab, new Vector3(x * CellSize.x, y * CellSize.y, y * CellSize.z), Quaternion.identity).GetComponent<Cell>();
 
                     //Активируем стены в зависимости от генерации
-                    c.WallLeft.SetActive(maze[x, y].WallLeft);
-                    c.WallBottom.SetActive(maze[x, y].WallBottom);
-                    c.Floor.SetActive(maze[x, y].Floor);
+                    c.WallLeft.SetActive(maze.cells[x, y].WallLeft);
+                    c.WallBottom.SetActive(maze.cells[x, y].WallBottom);
+                    c.Floor.SetActive(maze.cells[x, y].Floor);
 
                     //Спавним спавн поинт
                     if (x == 0 && y == 0)
