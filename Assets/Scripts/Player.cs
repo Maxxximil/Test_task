@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
 
     public Material activeShield;
     public Material nonActiveShield;
-    public Object Explosion;
-    public Object Win;
+    public GameObject Explosion;
+    public GameObject Win;
     
     public NavMeshAgent Agent;
 
@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        player = this;    
+        player = this;
+        GlobalEventManager.onGameEnd.AddListener(EndGame);
     }
 
     private void Start()
@@ -48,33 +49,46 @@ public class Player : MonoBehaviour
 
         if (other.CompareTag("Death") && !IsShieldActive) //При попадании в смертельную зону перезапуск
         {
-            GameOver();
+            GlobalEventManager.SendGameEnd(Explosion, "Death");
         }
         if (other.CompareTag("Finish")&&!_isWin)//При попадании в победную зону новая игра
         {
             _isWin = true;
-            GameWin();
+            GlobalEventManager.SendGameEnd(Win, "Win");
         }
     }
 
-    //Активация победных частиц
-    private void GameWin()
+    ////Активация победных частиц
+    //private void GameWin()
+    //{
+    //    Agent.isStopped = true;
+    //    GameObject go = (GameObject)Instantiate(typeOfGameEnding);
+    //    go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    //    UIController.Instance.WinGame();
+    //}
+
+    private void EndGame(GameObject typeOfGameEnding, string nameOfGameEnding)
     {
         Agent.isStopped = true;
-        GameObject go = (GameObject)Instantiate(Win);
+        GameObject go = (GameObject)Instantiate(typeOfGameEnding);
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        UIController.Instance.WinGame();
+        if (nameOfGameEnding == "Win") UIController.Instance.WinGame();
+        if (nameOfGameEnding == "Death")
+        {
+            Destroy(gameObject);
+            GlobalEventManager.SendSpawnPlayer();
+        }
     }
 
     //Активация проигрыша
-    public void GameOver()
-    {
-        Agent.isStopped = true;
-        GameObject go = (GameObject)Instantiate(Explosion);
-        go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        Destroy(gameObject);
-        GameController.Instance.SpawnPlayer();
-    }
+    //public void GameOver()
+    //{
+    //    Agent.isStopped = true;
+    //    GameObject go = (GameObject)Instantiate(Explosion);
+    //    go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    //    Destroy(gameObject);
+    //    GlobalEventManager.SendSpawnPlayer();
+    //}
 
     
 }

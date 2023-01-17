@@ -25,6 +25,8 @@ namespace Scripts.Controllers
         {
             Instance = this;
 
+            GlobalEventManager.onSpawnPlayer.AddListener(SpawnPlayer);
+            GlobalEventManager.onShowUI.AddListener(ShowUI);
         }
         private void Start()
         {
@@ -33,7 +35,7 @@ namespace Scripts.Controllers
 
         private void Update()
         {
-            if (_isRespawned) return;//Если зареспавнены выходи из апдейта
+            if (_isRespawned) return;//Если зареспавнены выходим из апдейта
             if (_currentTime > 0)
             {
                 _currentTime -= Time.deltaTime;//Уменбшаем время
@@ -41,11 +43,23 @@ namespace Scripts.Controllers
             else
             {
                 //Спавним игрока и активируем UI
-                SpawnPlayer();
-                UIController.Instance.Shield.SetActive(true);
-                UIController.Instance.PauseButton.interactable = true;
-                UIController.Instance.StartScreen.SetActive(false);
+
+                GlobalEventManager.SendSpawnPlayer();
+                GlobalEventManager.SendShowUI();
+                //SpawnPlayer();
+                //UIController.Instance.Shield.SetActive(true);
+                //UIController.Instance.PauseButton.interactable = true;
+                //UIController.Instance.StartScreen.SetActive(false);
+
+
             }
+        }
+
+        private static void ShowUI()
+        {
+            UIController.Instance.Shield.SetActive(true);
+            UIController.Instance.PauseButton.interactable = true;
+            UIController.Instance.StartScreen.SetActive(false);
         }
 
         public void SpawnPlayer()//Спавн игрока
