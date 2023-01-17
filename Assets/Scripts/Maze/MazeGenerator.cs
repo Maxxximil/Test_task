@@ -10,31 +10,37 @@ namespace Scripts.Maze
         public int Height = 15;
 
         //√енераци€ всех €чеек лабиринта
-        public MazeGeneratorCell[,] GenerateMaze()
+        public Maze GenerateMaze()
         {
-            MazeGeneratorCell[,] maze = new MazeGeneratorCell[Width, Height];
+            MazeGeneratorCell[,] cells = new MazeGeneratorCell[Width, Height];
 
-            for (int x = 0; x < maze.GetLength(0); x++)
+            for (int x = 0; x < cells.GetLength(0); x++)
             {
-                for (int y = 0; y < maze.GetLength(1); y++)
+                for (int y = 0; y < cells.GetLength(1); y++)
                 {
-                    maze[x, y] = new MazeGeneratorCell { X = x, Y = y };
+                    cells[x, y] = new MazeGeneratorCell { X = x, Y = y };
                 }
             }
 
-            for (int x = 0; x < maze.GetLength(0); x++)
+            for (int x = 0; x < cells.GetLength(0); x++)
             {
-                maze[x, Height - 1].WallLeft = false;
-                maze[x, Height - 1].Floor = false;
+                cells[x, Height - 1].WallLeft = false;
+                cells[x, Height - 1].Floor = false;
             }
 
-            for (int y = 0; y < maze.GetLength(1); y++)
+            for (int y = 0; y < cells.GetLength(1); y++)
             {
-                maze[Width - 1, y].WallBottom = false;
-                maze[Width - 1, y].Floor = false;
+                cells[Width - 1, y].WallBottom = false;
+                cells[Width - 1, y].Floor = false;
             }
 
-                RemoveWallsWithBacktrecker(maze);
+                RemoveWallsWithBacktrecker(cells);
+
+
+            Maze maze = new Maze();
+
+            maze.cells = cells;
+            maze.finishPosition = new Vector2Int(Width - 2, Height - 2);
             
 
             return maze;
@@ -44,7 +50,9 @@ namespace Scripts.Maze
         private void RemoveWallsWithBacktrecker(MazeGeneratorCell[,] maze)
         {
             MazeGeneratorCell current = maze[0, 0];
+            bool finishearned = false;
             current.Visited = true;
+            current.DistanceFromStart = 0;
 
             Stack<MazeGeneratorCell> stack = new Stack<MazeGeneratorCell>();
             do
@@ -65,8 +73,12 @@ namespace Scripts.Maze
                 {
                     MazeGeneratorCell chosen = unvisitedNeighbours[Random.Range(0, unvisitedNeighbours.Count)];
                     RemoveWall(current, chosen);
+
+
                     chosen.Visited = true;
                     stack.Push(chosen);
+                    if (x == Width - 2 && y == Height - 2) finishearned = true;
+                    if(!finishearned) chosen.DistanceFromStart = current.DistanceFromStart + 1;
                     current = chosen;
                 }
                 else
