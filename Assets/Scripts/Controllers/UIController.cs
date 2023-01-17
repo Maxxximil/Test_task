@@ -19,7 +19,6 @@ namespace Scripts.Controllers
         public bool IsPressed;
         private float _pressedTime = 2f;
         private float _currentTime;
-        private bool _ispaused = false;
 
         private void Awake()
         {
@@ -63,6 +62,7 @@ namespace Scripts.Controllers
         IEnumerator NewGame()
         {
             //Активируем эеран победы и через время перезагружаем сцену
+            yield return new WaitForSeconds(2f);
             WinScreen.SetActive(true);
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(0);
@@ -84,7 +84,6 @@ namespace Scripts.Controllers
         //Активация щита
         public void ActiveShield(bool isActive)
         {
-            Debug.Log(isActive);
             Player.player.IsShieldActive = isActive;
             Player.player.ActiveShield(isActive);
         }
@@ -92,17 +91,14 @@ namespace Scripts.Controllers
         //Пауза
         public void PauseGame()
         {
-            if (!_ispaused)
+            if (Time.timeScale == 1.5f)
             {
-                _ispaused = true;
-                Player.player.Agent.isStopped = true;
-                
-
+                Time.timeScale = 0;
             }
             else
             {
-                _ispaused = false;  
-                Player.player.Agent.isStopped = false;
+                Time.timeScale = 1.5f;
+
             }
 
         }

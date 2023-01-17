@@ -113,7 +113,7 @@ MonoBehaviour:
   activeShield: {fileID: 2100000, guid: bca940fd000f13245a0b6ed0a206dd9a, type: 2}
   nonActiveShield: {fileID: 2100000, guid: 892bd28a46cea1c4ca850072bb6f7511, type: 2}
   Explosion: {fileID: 6890442635145394465, guid: 43c74b70423dea647828c11d0a840742, type: 3}
-  Win: {fileID: 6890442635145394465, guid: 6c2291a50c9618247af4fdcc115c209a, type: 3}
+  Win: {fileID: 161522679276460418, guid: f6037d42e786ea2418ca86da2af844d7, type: 3}
   Agent: {fileID: 7294594922099690666}
   IsShieldActive: 0
 --- !u!195 &7294594922099690666
