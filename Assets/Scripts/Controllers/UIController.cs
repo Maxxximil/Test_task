@@ -62,6 +62,7 @@ namespace Scripts.Controllers
         IEnumerator NewGame()
         {
             //Активируем эеран победы и через время перезагружаем сцену
+            yield return new WaitForSeconds(2f);
             WinScreen.SetActive(true);
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(0);
@@ -83,7 +84,6 @@ namespace Scripts.Controllers
         //Активация щита
         public void ActiveShield(bool isActive)
         {
-            Debug.Log(isActive);
             Player.player.IsShieldActive = isActive;
             Player.player.ActiveShield(isActive);
         }
@@ -94,7 +94,6 @@ namespace Scripts.Controllers
             if (Time.timeScale == 1.5f)
             {
                 Time.timeScale = 0;
-
             }
             else
             {
